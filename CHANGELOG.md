@@ -14,3 +14,5 @@ First draft of the Honeypot protocol.
   stays stateless.
 - Post-quantum safe: ML-DSA-65 signatures, everything else symmetric.
 - Conformance vectors (`vectors/`) and 100 % test coverage.
+- Docs site and a live demo running the real protocol in the browser (`site/`), tested
+  against the vectors.

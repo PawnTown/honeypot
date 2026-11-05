@@ -26,3 +26,14 @@ jobs:
           go tool cover -func=cover.out | tail -1 | grep -q '100.0%'
       - name: vectors are up to date
         run: go test . -update && git diff --exit-code ../vectors
+
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: the demo matches the vectors
+        run: node --test site/test/vectors.test.mjs
+      - run: node site/build.mjs

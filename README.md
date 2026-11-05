@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Honeypot" width="160">
+</p>
+
 # Honeypot
 
 **The Honeypot protocol**: post-quantum safe lootboxes whose contents are fixed at
@@ -85,6 +89,10 @@ openKey, err := issuer.Release(ledger, box, "bob")
 drawn, err := box.OpenItem(keys, blueprint, openKey)
 ```
 
+Read the docs and open a box yourself: **[pawntown.github.io/honeypot](https://pawntown.github.io/honeypot/)**, with a
+[live demo](https://pawntown.github.io/honeypot/demo.html) that runs the real protocol in your browser, every payload
+byte by byte, and an attack gallery.
+
 ## Layout
 
 | Path | What |
@@ -92,6 +100,19 @@ drawn, err := box.OpenItem(keys, blueprint, openKey)
 | [`spec/HONEYPOT.md`](spec/HONEYPOT.md) | the protocol |
 | [`vectors/`](vectors) | conformance test vectors every implementation must pass |
 | [`go/`](go) | Go implementation (`github.com/PawnTown/honeypot/go`), 100 % test coverage |
+| [`site/`](site) | the docs site and demo (`node site/build.mjs --serve`), published to GitHub Pages |
+
+## Docs site
+
+```bash
+node site/build.mjs --serve              # http://localhost:4321/
+node --test site/test/vectors.test.mjs   # the demo's JavaScript against the vectors
+```
+
+Plain HTML from `site/pages/*.mjs`, with no build dependencies. The byte pictures are
+drawn from `vectors/core.json`, so they always match the libraries. A push to `main`
+publishes it (`.github/workflows/pages.yml`). The demo signs with `@noble/post-quantum`,
+vendored in `site/assets/vendor/`.
 
 ## Go
 
@@ -109,4 +130,5 @@ go test . -update     # regenerate the vectors
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE). `site/assets/vendor/noble.js` bundles `@noble/post-quantum` and
+`@noble/hashes` by Paul Miller (MIT).
