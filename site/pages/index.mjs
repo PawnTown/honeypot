@@ -12,6 +12,7 @@ export default {
     return `<section class="hero">
   <div class="hero-in">
     <div>
+      <img class="hero-logo" src="assets/logo.webp" alt="Honeypot" width="960" height="491" fetchpriority="high">
       <h1>Sealed loot, checkable odds.</h1>
       <p class="lead">Honeypot seals an item into a box the moment the box is made. Anyone can check the box is genuine and who owns it, but nobody can tell what is inside until one key opens it. Then anyone can recompute that the published odds picked that item.</p>
       <div class="hero-cta"><a class="btn primary" href="${href("demo")}">Open a box</a><a class="btn ghost" href="${href("concepts")}">How it works</a></div>

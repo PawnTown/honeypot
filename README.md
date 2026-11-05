@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Honeypot" width="160">
+  <img src="assets/logo.png" alt="Honeypot" width="420">
 </p>
 
 # Honeypot

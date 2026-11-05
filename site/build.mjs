@@ -132,12 +132,13 @@ function render(p) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f5b014">
+<meta name="theme-color" content="#ffb822">
 <title>${title}</title>
 <meta name="description" content="${d.esc(p.description || p.lead || "The Honeypot protocol: post-quantum safe lootboxes with fixed contents and exact odds.").replace(/<[^>]+>/g, "")}">
 <meta property="og:title" content="${title}">
 <meta property="og:image" content="assets/logo.png">
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:ital,wght@0,400;0,600;0,800;1,400&family=Spline+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -146,7 +147,7 @@ function render(p) {
 <body class="${isHome ? "home" : "doc"}${p.wide ? " wide" : ""}">
 <header class="topbar">
   <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
-  <a class="brand" href="./"><img src="assets/icon.svg" alt="" width="34" height="34"><span>Honeypot</span></a>
+  <a class="brand" href="./"><img src="assets/logo.webp" alt="Honeypot" width="98" height="50"></a>
   <span class="ver">draft, not audited</span>
   <nav class="top-links"><a href="${href("demo")}">Try it</a><a href="${href("concepts")}">Docs</a><a href="${href("attacks")}">Attacks</a><a class="gh" href="${REPO}">GitHub</a></nav>
 </header>
