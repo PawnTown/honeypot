@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+          cache: false
+      - run: go vet ./...
+      - run: test -z "$(gofmt -l .)"
+      - run: go test -race -coverprofile=cover.out ./...
+      - name: 100% coverage
+        run: |
+          go tool cover -func=cover.out | tail -1
+          go tool cover -func=cover.out | tail -1 | grep -q '100.0%'
+      - name: vectors are up to date
+        run: go test . -update && git diff --exit-code ../vectors
