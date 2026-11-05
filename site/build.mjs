@@ -132,7 +132,7 @@ function render(p) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffb822">
+<meta name="theme-color" content="#28262b">
 <title>${title}</title>
 <meta name="description" content="${d.esc(p.description || p.lead || "The Honeypot protocol: post-quantum safe lootboxes with fixed contents and exact odds.").replace(/<[^>]+>/g, "")}">
 <meta property="og:title" content="${title}">
@@ -147,7 +147,7 @@ function render(p) {
 <body class="${isHome ? "home" : "doc"}${p.wide ? " wide" : ""}">
 <header class="topbar">
   <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
-  <a class="brand" href="./"><img src="assets/logo.webp" alt="Honeypot" width="98" height="50"></a>
+  <a class="brand" href="./"><img src="assets/wordmark.webp" alt="Honeypot" width="85" height="50"></a>
   <span class="ver">draft, not audited</span>
   <nav class="top-links"><a href="${href("demo")}">Try it</a><a href="${href("concepts")}">Docs</a><a href="${href("attacks")}">Attacks</a><a class="gh" href="${REPO}">GitHub</a></nav>
 </header>

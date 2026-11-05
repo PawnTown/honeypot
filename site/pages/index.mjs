@@ -6,23 +6,27 @@ export default {
   description: "Honeypot: post-quantum safe lootboxes. Contents fixed at creation, hidden until one key opens them, with exact odds anyone can recompute.",
   hero: ({ vectors, href, comb, boxSegs }) => {
     const draw = vectors.core.draws[4];
-    const bare = boxSegs(draw.box, 0).segs.reduce((n, s) => n + s.len, 0);
-    const shown = PER_ROW * Math.ceil((bare + 1) / PER_ROW) - bare;
-    const { segs, hex } = boxSegs(draw.box, shown);
+    const bare = boxSegs(draw.box, 0).segs.reduce((n, seg) => n + seg.len, 0);
+    const honeycomb = (perRow, className) => {
+      const shown = perRow * Math.ceil((bare + 1) / perRow) - bare;
+      const { segs, hex } = boxSegs(draw.box, shown);
+      return `<div class="hero-comb ${className}">${comb(hex, segs, {
+        perRow,
+        title: "A real box, one cell per byte. The dark cells are the sealed contents.",
+        more: `Plus ${(3309 - shown).toLocaleString("en-US")} more signature bytes.`,
+      })}</div>`;
+    };
     return `<section class="hero">
   <div class="hero-in">
     <div>
-      <img class="hero-logo" src="assets/logo.webp" alt="Honeypot" width="960" height="491" fetchpriority="high">
       <h1>Sealed loot, checkable odds.</h1>
       <p class="lead">Honeypot seals an item into a box the moment the box is made. Anyone can check the box is genuine and who owns it, but nobody can tell what is inside until one key opens it. Then anyone can recompute that the published odds picked that item.</p>
       <div class="hero-cta"><a class="btn primary" href="${href("demo")}">Open a box</a><a class="btn ghost" href="${href("concepts")}">How it works</a></div>
     </div>
-    ${comb(hex, segs, {
-      perRow: PER_ROW,
-      title: "A real box, one cell per byte. The dark cells are the sealed contents.",
-      more: `Plus ${(3309 - shown).toLocaleString("en-US")} more signature bytes.`,
-    })}
+    <img class="hero-box" src="assets/logo.webp" alt="A Honeypot cereal box: a grinning ghost holds up a mystery capsule over a bowl of honey crunch, under a burst reading secret toy inside." width="720" height="1084" fetchpriority="high">
   </div>
+  ${honeycomb(30, "comb-wide")}
+  ${honeycomb(14, "comb-narrow")}
   <svg class="drip" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#fffcf0" d="M0,60 L0,24 C80,24 90,46 150,46 C210,46 200,18 290,18 C360,18 360,52 430,52 C490,52 480,26 560,26 C640,26 650,44 720,44 C800,44 790,14 880,14 C960,14 950,50 1030,50 C1100,50 1100,28 1180,28 C1260,28 1260,42 1330,42 C1390,42 1400,30 1440,30 L1440,60 Z"/></svg>
 </section>`;
   },

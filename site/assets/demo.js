@@ -369,7 +369,7 @@ function fillComb(plain) {
     cell.style.setProperty("--d", `${k * 35}ms`);
     k++;
   });
-  $("cell-info").textContent = "White cells: the decrypted contents. Dark pink cells: the authentication tag.";
+  $("cell-info").textContent = "White cells: the decrypted contents. Brown cells: the authentication tag.";
 }
 
 // ------------------------------------------------------------------- cheats
