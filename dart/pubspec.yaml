@@ -1,0 +1,28 @@
+name: honeypot
+description: >-
+  Honeypot protocol: post-quantum safe lootboxes whose contents are fixed at
+  creation and readable only with a key. ML-DSA-65 (FIPS 204), HMAC-SHA-256
+  and AES-256-GCM.
+version: 0.1.0
+homepage: https://pawntown.github.io/honeypot/
+repository: https://github.com/PawnTown/honeypot/tree/main/dart
+issue_tracker: https://github.com/PawnTown/honeypot/issues
+topics:
+  - lootbox
+  - post-quantum
+  - cryptography
+  - ml-dsa
+  - protocol
+
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  crypto: ^3.0.6
+  pointycastle: ^4.0.0
+  pqcrypto: ^0.4.4
+
+dev_dependencies:
+  coverage: ^1.11.0
+  lints: ^6.0.0
+  test: ^1.25.0

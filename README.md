@@ -39,8 +39,8 @@ Post-quantum: boxes are signed with ML-DSA-65 (FIPS 204), and everything else is
 symmetric (HMAC-SHA-256, AES-256-GCM). A box holds no public-key encryption, so
 recording boxes today does not help anyone read them later. A box is about 3.4 KB.
 
-Status: **draft, not audited**. The specification is still moving. Go implements
-all of it; the vectors pin the bytes for other languages. Not designed yet: proof of
+Status: **draft, not audited**. The specification is still moving. Go and Dart
+implement all of it; the vectors pin the bytes for other languages. Not designed yet: proof of
 a whole batch to the public (see "Planned").
 
 ## Install
@@ -48,8 +48,10 @@ a whole batch to the public (see "Planned").
 | Language | Package |
 |---|---|
 | Go 1.27 or later | `go get github.com/PawnTown/honeypot/go@latest` |
+| Dart 3.10 or later, Flutter | `honeypot: {git: {url: https://github.com/PawnTown/honeypot, path: dart}}` in `pubspec.yaml` |
 
-No dependencies: ML-DSA comes from `crypto/mldsa` in the standard library.
+Go has no dependencies: ML-DSA comes from `crypto/mldsa` in the standard library.
+Dart is pure Dart, with ML-DSA from `pqcrypto` (see [`dart/`](dart)).
 
 ```go
 issuer, _ := honeypot.NewIssuer(1, mainKey)
@@ -100,6 +102,7 @@ byte by byte, and an attack gallery.
 | [`spec/HONEYPOT.md`](spec/HONEYPOT.md) | the protocol |
 | [`vectors/`](vectors) | conformance test vectors every implementation must pass |
 | [`go/`](go) | Go implementation (`github.com/PawnTown/honeypot/go`), 100 % test coverage |
+| [`dart/`](dart) | Dart implementation, for Flutter and the VM, 100 % test coverage |
 | [`site/`](site) | the docs site and demo (`node site/build.mjs --serve`), published to GitHub Pages |
 
 ## Docs site
@@ -122,10 +125,18 @@ go test -cover ./...
 go test . -update     # regenerate the vectors
 ```
 
+## Dart
+
+```bash
+cd dart
+dart test
+tool/coverage.sh      # fails below 100 % lines, branches, functions
+```
+
 ## Planned
 
 - a series manifest: proof of a whole batch to everyone
-- `js/` and `dart/`
+- `js/`
 - `rust/`
 
 ## License

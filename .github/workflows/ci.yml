@@ -27,6 +27,21 @@ jobs:
       - name: vectors are up to date
         run: go test . -update && git diff --exit-code ../vectors
 
+  dart:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dart
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed --line-length 160 .
+      - run: dart analyze --fatal-infos
+      - run: tool/coverage.sh
+
   site:
     runs-on: ubuntu-latest
     steps:
